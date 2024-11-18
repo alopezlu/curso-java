@@ -132,9 +132,7 @@ class ArreglosVarios{
 		System.out.println();
 	}
 	
-	public void llenarMascota() {
-		
-	}
+	
 }
 
 /**

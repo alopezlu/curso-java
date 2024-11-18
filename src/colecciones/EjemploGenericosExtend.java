@@ -45,6 +45,7 @@ public class EjemploGenericosExtend {
 		
 
 		System.out.println(bean.getValor());
+		System.out.println(bean2.getValor());
 		
 	}
 }
