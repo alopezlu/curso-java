@@ -68,9 +68,10 @@ public class Devs4jCounter {
 		
 		System.out.printf("Estado %s \n", hilo3.getState());
 		hilo3.start();
+		hilo3.join();
 		
 		System.out.printf("Estado %s \n", hilo3.getState());
-		hilo3.join();
+		//hilo3.join();
 		
 		
 	}
