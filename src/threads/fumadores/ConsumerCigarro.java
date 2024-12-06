@@ -1,7 +1,6 @@
 package threads.fumadores;
 
-import java.util.HashMap;
-import java.util.Iterator;
+
 
 public class ConsumerCigarro extends Thread {
 

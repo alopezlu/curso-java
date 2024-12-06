@@ -1,6 +1,5 @@
 package threads;
 
-import java.util.Iterator;
 
 /**
  * Clase de hilo hereda de la clase Thread
