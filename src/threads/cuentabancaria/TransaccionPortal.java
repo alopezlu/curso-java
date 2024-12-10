@@ -23,7 +23,14 @@ public class TransaccionPortal extends Thread{
 	@Override
 	public void run() {
 	
+		//validar el monto que se recibio
+		
+		//operaciones de retirar dinero
 		int saldo = cuenta.consultarSaldo(usuario);
+		
+		
+		
+		
 		
 		System.out.printf("El usuario %d tiene el saldo %d \n", usuario, saldo);
 		
