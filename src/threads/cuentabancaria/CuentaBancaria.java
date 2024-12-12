@@ -13,7 +13,7 @@ public class CuentaBancaria {
 		llenarCuentas();
 	}
 
-	public int consultarSaldo(int usuario) {
+	public synchronized int consultarSaldo(int usuario) {
 
 		int saldo = cuentasUsuario.get(usuario);
 
@@ -27,7 +27,7 @@ public class CuentaBancaria {
 	 * @param monto
 	 * @return
 	 */
-	public boolean validarMontoRecibido(int usuario, int monto) {
+	public synchronized boolean validarMontoRecibido(int usuario, int monto) {
 		boolean mensaje = false;
 		if (monto >= 1000 || monto <= 80000) {
 			mensaje = true;
@@ -36,11 +36,10 @@ public class CuentaBancaria {
 		return mensaje;
 	}
 
-	public boolean realizarRetiro(int usuario, int saldo, int montoRetiro) {
+	public synchronized boolean realizarRetiro(int usuario, int saldo, int montoRetiro) {
 		// consultar saldo y validar si se puede hacer el retiro.
 
 		boolean resultado = false;
-		boolean actualizarSaldo = false;
 
 		int saldoActualizado = 0;
 
@@ -56,9 +55,20 @@ public class CuentaBancaria {
 		return resultado;
 	}
 
-	public boolean actualizarSaldo(int usuario, int saldoActualizado) {
+	public synchronized boolean actualizarSaldo(int usuario, int saldoActualizado) {
 		boolean resultado = false;
-		cuentasUsuario.put(usuario, saldoActualizado);
+		
+		try {
+			imprimirCuentas();
+			cuentasUsuario.remove(usuario);
+			cuentasUsuario.put(usuario, saldoActualizado);
+			
+			imprimirCuentas();
+			resultado = true;
+			
+		} catch (Exception e) {
+			resultado= false;
+		}
 		
 		return resultado;    
 
@@ -70,6 +80,12 @@ public class CuentaBancaria {
 		cuentasUsuario.put(567, 200000);
 		cuentasUsuario.put(2345, 1000000);
 		cuentasUsuario.put(789, 700000);
+	}
+	
+	public synchronized void imprimirCuentas() {
+		System.out.println("----IMPRIMIENTO CUENTAS ACTUALES--------");
+		System.out.println(cuentasUsuario);
+		System.out.println("--------------------------------------");
 	}
 
 }

@@ -48,7 +48,7 @@ public class TransaccionPortal extends Thread {
 		// validar el monto que se recibio
 		boolean montoValido = getCuenta().validarMontoRecibido(getUsuario(), getMonto());
 		
-		System.out.println("monto valido --> "+ montoValido);
+		System.out.printf("monto valido %s --> %b \n", getName(), montoValido);
 		
 		if(montoValido== true) {
 			
@@ -56,22 +56,28 @@ public class TransaccionPortal extends Thread {
 			
 			//consulto el saldo
 			int saldo = getCuenta().consultarSaldo(getUsuario());
+			System.out.printf("El usuario %d tiene el saldo %d \n", usuario, saldo);
 			
 			if (saldo>1000) {
 				retiroExitoso = getCuenta().realizarRetiro(getUsuario(), saldo, getMonto());
-				System.out.println("retiroExitoso " + retiroExitoso);
+				System.out.println("retiroExitoso - " + retiroExitoso);
 				
 			}else {
 				retiroExitoso = false;
 				System.out.println("retiroExitoso " + retiroExitoso);
 			}
 
-			System.out.printf("El usuario %d tiene el saldo %d \n", usuario, saldo);
+			
 		}else {
 			System.out.println("*********monto no valido");
 		}
-
-		
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.out.println(get);
 
 	}
 

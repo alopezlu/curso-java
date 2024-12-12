@@ -1,7 +1,5 @@
 package threads.ejercicios;
 
-import java.util.Random;
-
 public class CuentaRegresiva2 extends Thread {
 	private int numeroContar;
 	private String nameThread;
@@ -50,27 +48,26 @@ public class CuentaRegresiva2 extends Thread {
 	 */
 	@Override
 	public void run() {
-		
+
 		asignarPrioridad();
-		
+
 		for (int i = getNumeroContar(); i > 0; i--) {
 
 			System.out.printf("Hilo %s : Contador: %d \n", getNameThread(), i);
-			
+
 			try {
-				
+
 				Thread.sleep(100); // esperan igual tiempo
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-
 		}
 		System.out.println("FIN CUENTA 2 *******************************getNameThread:" + getNameThread());
 
 	}
-	
+
 	/**
 	 * metodo que asigna la prioridad
 	 */
