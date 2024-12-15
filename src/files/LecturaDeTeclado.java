@@ -14,13 +14,21 @@ public class LecturaDeTeclado {
 		return br.readLine();
 	}
 	
+	public static int readInteger(String prompt) throws NumberFormatException, IOException {
+		
+		return Integer.parseInt(readMessage(prompt));
+		
+	}
+	
 	public static void main(String[] args) throws IOException {
 	
 //		int value = System.in.read();  //mismo numero que se escribe no es el mismo que se imprime, porque se esta leyendo el bite no el valor
 //		System.out.println(value);
-		String mensaje = readMessage("Como te llamas?");
+		String nombre = readMessage("Como te llamas?");
+		System.out.println("Te llamas: "+ nombre);
 		
-		System.out.println("Te llamas: "+ mensaje);
+		int edad= readInteger("Cuantos años tienes?");
+		System.out.println("tienes edad: "+edad);
 	}
 
 }
